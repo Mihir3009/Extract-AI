@@ -1,18 +1,20 @@
 # Enhancing Coherence in Extractive Summarization using LLMs with Human Feedback
 
+You may want to check out our paper - [Towards Enhancing Coherence in Extractive Summarization: Dataset and Experiments with LLMs](https://arxiv.org/abs/2407.04855)
+
 Coherence plays a pivotal role in creating a high-quality summary of a document. In recent times, neural extractive summarization has become increasingly popular, yet, most of them ignore the coherence of summaries when extracting sentences. Coherence emerges as a crucial attribute of text summarization since It holds a significant connection to user experience and profoundly influences the comprehensibility of the generated or extracted summaries. Within the context of extractive summarization, coherence becomes quantifiable through the interconnection among sentences and ease of readability. However, attaining this coherence within an extractive summary presents a challenge, given that the extracted sentences don't inherently assure coherence.
 
 <p align="center"> <img width="500" alt="approach" src="https://github.com/Mihir3009/Extract-AI/assets/47143544/b3fef723-bc9a-4192-acb3-9ed366008ef1"> </p>
 
-To improve the coherence in extractive summarization, we approach the concept of coherence within summaries through the lens of user-specific intent. With this user-centric perspective, our approach entails training LLMs using human feedback, a tactic aimed at refining the coherence in the generated summaries. Drawing inspiration from InstructGPT, our strategy involves fine-tuning the model to align with user intent and ensure the production of coherent summaries. Thus, our approach comprises two primary components: firstly, the aggregation of human feedback to enhance the coherence of generated summaries, and secondly, the supervised fine-tuning of open-source LLMs based on user feedback to amplify their capacity for coherent summary generation. Figure provides the schematic represntation of our proposed approach.
+To improve the coherence in extractive summarization, we approach the concept of coherence within summaries through the lens of user-specific intent. With this user-centric perspective, our approach entails training LLMs using human feedback, a tactic aimed at refining the coherence in the generated summaries. Drawing inspiration from InstructGPT, our strategy involves fine-tuning the model to align with user intent and ensure the production of coherent summaries. Thus, our approach comprises two primary components: firstly, the aggregation of human feedback to enhance the coherence of generated summaries, and secondly, the supervised fine-tuning of open-source LLMs based on user feedback to amplify their capacity for coherent summary generation. The figure provides the schematic representation of our proposed approach.
 
 ## Data
 
 In our pursuit of acquiring human feedback to refine the coherence of extractive summaries, we enlisted the expertise of annotation specialists to accurately annotate data dedicated to our task. 
 
-***Details about data and annotation instruction can be found in the `/data` folder. Please see this folder for further details.***
+***Details about data and annotation instructions can be found in the `/data` folder. Please see this folder for further details.***
 
-Full dataset is provided in `/data/annotated_data/data.json` file. The file is provided in following format:
+Full dataset is provided in `/data/annotated_data/data.json` file. The file is provided in the following format:
 
 ```Json
 {
@@ -42,7 +44,7 @@ Clone this repository to your project folder:
 git clone git@git.corp.adobe.com:mihirp/Extractive_LLMs.git
 ```
 
-Create a conda environment to install all required depedencies:
+Create a conda environment to install all required dependencies:
 
 ```shell
 conda env create -f environment.yml
@@ -59,7 +61,7 @@ All fine-tuning scripts for LoRA are provided at `/src/finetune_quantization/uti
 
 ### Training with LoRA
 
-To run the Falcon-40B-Instruct model, please use below command:
+To run the Falcon-40B-Instruct model, please use the below command:
 
 ```shell
 export TRANSFORMERS_CACHE=[path where you want to store the model weights]
@@ -74,13 +76,13 @@ python run_model_falcon.py \
         --bf16 True
 ```
 
-Before running Llama-2-13B model, make sure that you have applied for access from huggingface (https://huggingface.co/meta-llama/Llama-2-13b-hf), and also you have huggingface logic in your system through cli. Please use below command for huggingface cli login:
+Before running the Llama-2-13B model, make sure that you have applied for access from huggingface (https://huggingface.co/meta-llama/Llama-2-13b-hf), and also you have huggingface logic in your system through cli. Please use below command for huggingface cli login:
 
 ```shell
 huggingface-cli login
 ```
 
-To run the Llama-2-13B model, please use below command:
+To run the Llama-2-13B model, please use the below command:
 
 ```shell
 export TRANSFORMERS_CACHE=[path where you want to store the model weights]
@@ -97,7 +99,7 @@ python run_model_llama2.py \
 
 ### Inference with LoRA
 
-To run the inference for both models above, please use below command:
+To run the inference for both models above, please use the below command:
 
 ```shell
 export TRANSFORMERS_CACHE=[path where you want to store the model weights]
@@ -121,7 +123,7 @@ Llama-2-13B: 2 GPUs A100 (80GB)
 
 ## Full Parametric Training
 
-We only fine-tune Llama-2-7b-hf model for full parametric training. Below is a step-by-step guide to fine-tune it:
+We only fine-tune the Llama-2-7b-hf model for full parametric training. Below is a step-by-step guide to fine-tune it:
 
 1. `git clone https://github.com/facebookresearch/llama-recipes.git`
 2. Go to the llama-reciepe Github, please make sure to install from source (https://github.com/facebookresearch/llama-recipes#install-from-source)
@@ -136,13 +138,13 @@ export CUDA_VISIBLE_DEVICES=[GPUs]
 torchrun --nnodes 1 --nproc_per_node 4 ./examples/finetuning.py --enable_fsdp --model_name meta-llama/Llama-2-7b-hf --dist_checkpoint_root_folder [path to output folder] --dist_checkpoint_folder [name of output folder] --use_fast_kernels 
 ```
 
-6. Once trainng is completed, please use below command for model conversion to Hugging Face:
+6. Once training is completed, please use the below command for model conversion to Hugging Face:
 
 ```shell
 python -m llama_recipes.inference.checkpoint_converter_fsdp_hf --fsdp_checkpoint_path {path}/Llama-2-7b-hf --consolidated_model_path {save-path}/Llama-2-7b-hf-converted/  --HF_model_path_or_name meta-llama/Llama-2-7b-hf
 ```
 
-7. Peform inference using default script.
+7. Perform inference using default script.
 
 ### GPU Configuration
 
@@ -157,7 +159,7 @@ We fine-tuned these models using `deepspeed`. Config file for deepspeed will be 
 
 ### Training and Evaluation
 
-This script computes `Rouge-L` metric by default.
+This script computes the `Rouge-L` metric by default.
 
 ```shell
 set -x
