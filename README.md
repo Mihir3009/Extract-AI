@@ -1,5 +1,7 @@
 # Enhancing Coherence in Extractive Summarization using LLMs with Human Feedback
 
+This is the git repository containing the code and data for our paper [Towards Enhancing Coherence in Extractive Summarization: Dataset and Experiments with LLMs](https://arxiv.org/pdf/2407.04855).
+
 Coherence plays a pivotal role in creating a high-quality summary of a document. In recent times, neural extractive summarization has become increasingly popular, yet, most of them ignore the coherence of summaries when extracting sentences. Coherence emerges as a crucial attribute of text summarization since It holds a significant connection to user experience and profoundly influences the comprehensibility of the generated or extracted summaries. Within the context of extractive summarization, coherence becomes quantifiable through the interconnection among sentences and ease of readability. However, attaining this coherence within an extractive summary presents a challenge, given that the extracted sentences don't inherently assure coherence.
 
 <p align="center"> <img width="500" alt="approach" src="https://github.com/Mihir3009/Extract-AI/assets/47143544/b3fef723-bc9a-4192-acb3-9ed366008ef1"> </p>
@@ -59,7 +61,7 @@ All fine-tuning scripts for LoRA are provided at `/src/finetune_quantization/uti
 
 ### Training with LoRA
 
-To run the Falcon-40B-Instruct model, please use below command:
+To run the Falcon-40B-Instruct model, please use the command below:
 
 ```shell
 export TRANSFORMERS_CACHE=[path where you want to store the model weights]
@@ -198,6 +200,22 @@ All training and evaluation is conducted on 4 GPUs A100 (40GB)
 
 Mihir Parmar (Adobe Intern): mihirp@adobe.com \
 Hanieh Deilamsalehy: deilamsa@Adobe.com
+
+## Citation
+
+If you use this work in your research, please cite our paper [Towards Enhancing Coherence in Extractive Summarization: Dataset and Experiments with LLMs](https://arxiv.org/pdf/2407.04855) as follows:
+
+```
+@misc{parmar2024enhancingcoherenceextractivesummarization,
+      title={Towards Enhancing Coherence in Extractive Summarization: Dataset and Experiments with LLMs}, 
+      author={Mihir Parmar and Hanieh Deilamsalehy and Franck Dernoncourt and Seunghyun Yoon and Ryan A. Rossi and Trung Bui},
+      year={2024},
+      eprint={2407.04855},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2407.04855}, 
+}
+```
 
 ## License
 
