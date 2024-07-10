@@ -201,6 +201,22 @@ All training and evaluation is conducted on 4 GPUs A100 (40GB)
 Mihir Parmar (Adobe Intern): mihirp@adobe.com \
 Hanieh Deilamsalehy: deilamsa@Adobe.com
 
+## Citation
+
+If you use this work in your research, please cite our paper [Towards Enhancing Coherence in Extractive Summarization: Dataset and Experiments with LLMs](https://arxiv.org/abs/2407.04855) as follows:
+
+```
+@misc{parmar2024enhancingcoherenceextractivesummarization,
+      title={Towards Enhancing Coherence in Extractive Summarization: Dataset and Experiments with LLMs}, 
+      author={Mihir Parmar and Hanieh Deilamsalehy and Franck Dernoncourt and Seunghyun Yoon and Ryan A. Rossi and Trung Bui},
+      year={2024},
+      eprint={2407.04855},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2407.04855}, 
+}
+```
+
 ## License
 
 The code and model are licensed under the [Adobe Research License](./LICENSE.md). The license prohibits commercial use and allows non-commercial research use. The DialogueSum dataset is under CC BY-NC-SA 4.0 license. The DebateSum dataset is under MIT license. The MeetingBank dataset is under CC-BY-NC-ND 4.0 International license.
